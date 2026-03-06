@@ -32,6 +32,7 @@ A common but insecure approach is to store credentials like:
 CLIENT_ID
 CLIENT_SECRET
 TENANT_ID
+```text
 
 ---
 
