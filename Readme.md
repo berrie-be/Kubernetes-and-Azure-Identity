@@ -210,8 +210,9 @@ Typical claims include:
 ```text
 iss = AKS OIDC issuer
 sub = system:serviceaccount:backend:payment-sa
-Step 3 - Workload Identity Injects Environment Variables
 ```
+### Step 3 - Workload Identity Injects Environment Variables
+
 The pod gets environment variables like:
 ```text
 AZURE_CLIENT_ID=<managed_identity_client_id>
