@@ -87,3 +87,50 @@ flowchart TD
     E --> F[Azure Managed Identity]
     F --> G[Azure Resource]
 ```
+
+---
+
+## 5. Step-by-Step Setup
+### Step 1 - Enable OIDC Issuer and Workload Identity on AKS
+
+For a new AKS cluster:
+```bash
+az aks create \
+  --resource-group my-rg \
+  --name my-aks \
+  --enable-oidc-issuer \
+  --enable-workload-identity
+```
+For an existing AKS cluster:
+```bash
+az aks update \
+  --resource-group my-rg \
+  --name my-aks \
+  --enable-oidc-issuer \
+  --enable-workload-identity
+```
+### Step 2 - Get the AKS OIDC Issuer URL
+
+```bash
+az aks show \
+  --name my-aks \
+  --resource-group my-rg \
+  --query "oidcIssuerProfile.issuerUrl" \
+  --output tsv
+```
+Example output:
+```text
+https://oidc.prod-aks.azure.com/12345678-abcd-1234-abcd-123456789abc/
+```
+This issuer URL is used in the federated credential.
+
+### Step 3 - Create an Azure Managed Identity
+
+```bash
+az identity create \
+  --name payment-mi \
+  --resource-group my-rg
+```
+Save:
+Client ID
+Resource ID
