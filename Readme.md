@@ -59,3 +59,31 @@ Azure Managed Identity
             ↓
 Azure Resource Access
 ```
+This allows pods to securely access Azure services.
+
+---
+
+## 3. Components Involved
+
+```text
+| Component                  | Location    | Purpose                                                  |
+| -------------------------- | ----------- | -------------------------------------------------------- |
+| Kubernetes Service Account | AKS Cluster | Identity used by pods                                    |
+| Managed Identity           | Azure       | Azure identity used to access resources                  |
+| Federated Credential       | Azure       | Trust rule linking Kubernetes identity to Azure identity |
+| Service Account Annotation | Kubernetes  | Tells pods which managed identity to use                 |
+```
+
+---
+
+## 4. High-Level Architecture
+
+```mermaid
+flowchart TD
+    A[Pod] --> B[Kubernetes Service Account]
+    B --> C[OIDC Token]
+    C --> D[Azure AD / Microsoft Entra ID]
+    D --> E[Federated Credential Check]
+    E --> F[Azure Managed Identity]
+    F --> G[Azure Resource]
+```
