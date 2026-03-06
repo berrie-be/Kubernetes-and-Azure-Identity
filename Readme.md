@@ -43,3 +43,19 @@ TENANT_ID
 - Increased operational overhead
     
 Workload Identity solves this by allowing pods to authenticate to Azure without storing secrets.  
+
+---
+
+## 2. What is Workload Identity?
+
+Workload Identity allows a Kubernetes Service Account to impersonate an Azure Managed Identity using OIDC federation.
+
+```text
+Kubernetes Service Account
+            ↓
+OIDC Federation
+            ↓
+Azure Managed Identity
+            ↓
+Azure Resource Access
+```
