@@ -37,8 +37,9 @@ TENANT_ID
 ---
 
 ## Problems with this approach  
-Secrets can leak  
-Credentials must be rotated  
-Higher security risk  
-Increased operational overhead  
+- Secrets can leak  
+- Credentials must be rotated  
+- Higher security risk  
+- Increased operational overhead
+    
 Workload Identity solves this by allowing pods to authenticate to Azure without storing secrets.  
